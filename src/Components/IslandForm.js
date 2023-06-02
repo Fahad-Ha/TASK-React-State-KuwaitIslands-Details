@@ -1,17 +1,17 @@
 import { useState } from "react";
+import islands from "../data/islands";
 
-export default function IslandForm({ island }) {
+export default function IslandForm({ island, visitors, setVisitors }) {
   const [fullName, setFullName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-
   const getFullName = (e) => {
     setFullName(e.target.value);
-    console.log(fullName);
+    console.log(visitors);
   };
   const getPhoneNumber = (e) => {
     setPhoneNumber(e.target.value);
-    console.log(phoneNumber);
   };
+
   return (
     <div className="form">
       <h2>{island.name}</h2>
@@ -26,9 +26,16 @@ export default function IslandForm({ island }) {
       <button
         className="book"
         onClick={() => {
-          window.confirm(
-            `Are you sure you want to book to ${island.name} with the Name: ${fullName}, phone: ${phoneNumber}`
-          );
+          let islandId = island.id;
+          console.log(islandId);
+          if (
+            window.confirm(
+              `Are you sure you want to book to ${island.name} with the Name: ${fullName}, phone: ${phoneNumber}`
+            )
+          ) {
+            islands[islandId - 1].visitors += 1;
+            setVisitors(visitors + 1);
+          }
         }}
       >
         Book for today!
