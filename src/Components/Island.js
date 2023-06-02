@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import IslandForm from "./IslandForm";
 
-export default function Island({ island }) {
+export default function Island({ island, changeIsland }) {
+  const [visitors, setVisitors] = useState(0);
   return (
-    <div className="Island">
+    <div onClick={() => changeIsland(island)} className="Island">
       <h3>{island.name}</h3>
       {/* YOU HAVE TO CHANGE THE VISITORS COUNT */}
-      <p>Visitors 0</p>
+      <p>Visitors {visitors}</p>
       <img src={island.img} alt={island.name} />
     </div>
   );
