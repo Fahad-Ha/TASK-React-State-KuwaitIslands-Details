@@ -34,6 +34,7 @@ export default function IslandForm({ island, visitors, setVisitors }) {
             )
           ) {
             islands[islandId - 1].visitors += 1;
+            // triggering re-rendering
             setVisitors(visitors + 1);
           }
         }}
